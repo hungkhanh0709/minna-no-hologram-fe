@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { Play, ArrowRight, Clock, PenToolIcon as Tool, BarChart, House, Hourglass, Telescope, Earth, PaintRoller, Tag, Check } from "lucide-react"
+import { Play, ArrowRight, Clock, PenToolIcon as Tool, BarChart, House, Hourglass, Telescope, Earth, PaintRoller, Check } from "lucide-react"
 import styles from "./page.module.css"
 import { HologramShowcase } from "@/components/HologramShowCase"
 import { LikeButton } from "../components/LikeButton"
@@ -116,7 +116,7 @@ export default function HomePage() {
               {videos.map((video) => (
                 <Link href={`/videos/${video.id}`} key={video.id} className={styles.videoCard}>
                   <div className={styles.thumbnail}>
-                    <img
+                    <Image
                       src={video.thumbnail || "/placeholder.svg"}
                       alt={video.title}
                       className={styles.thumbnailImage}
@@ -195,7 +195,7 @@ export default function HomePage() {
               <div className={styles.diyContent}>
                 <h3 className={styles.diyProjectTitle}>Lorem ipsum dolor sit amet, consectetur adipiscing ipsum</h3>
                 <p className={styles.diyDescription}>
-                  Experience the future of payments: fast, secure, and tailored for the next generation's convenience and
+                  Experience the future of payments: fast, secure, and tailored for the next generation convenience and
                   trust.
                 </p>
 
