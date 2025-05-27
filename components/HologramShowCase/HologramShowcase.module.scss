@@ -1,0 +1,46 @@
+.container {
+  position: relative;
+  width: fit-content;
+  margin: 2rem auto;
+}
+
+.imageWrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.1),
+    0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.image {
+  border-radius: 20px;
+  display: block;
+}
+
+.badgeTopLeft {
+  position: absolute;
+  top: -20px;
+  left: -40px;
+  background: white;
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+.badgeBottomRight {
+  position: absolute;
+  bottom: -20px;
+  right: -40px;
+  background: white;
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
