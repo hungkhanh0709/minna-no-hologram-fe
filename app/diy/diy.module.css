@@ -1,179 +1,15 @@
-/* Variables */
-:root {
-  --primary-color: #a855f7;
-  --primary-light: #d8b4fe;
-  --text-color: #333;
-  --bg-light: #f8fafc;
-  --active-color: #4f46e5;
-  --active-underline: #818cf8;
+.heroContainer {
+  background: linear-gradient(0deg, #E8F6FF 0%, #FFF 100%);  
+  padding-bottom: 100px;
 }
 
-/* Global styles */
-.page {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%);
-}
-
-/* Header styles */
-.header {
-  display: flex;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: white;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-}
-
-/* Logo styles */
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-right: 2rem;
-}
-
-.logoIcon {
-  width: 40px;
-  height: 40px;
-}
-
-.logoText {
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--text-color);
-}
-
-.logoText div:first-child {
-  font-size: 0.9rem;
-}
-
-.logoText div:last-child {
-  font-size: 1.1rem;
-}
-
-/* Navigation styles */
-.navigation {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  margin-right: auto;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.navItem {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--text-color);
-  text-decoration: none;
-  padding: 0.5rem 0;
-  position: relative;
-}
-
-.navIcon {
-  width: 20px;
-  height: 20px;
-}
-
-.navItem.active {
-  color: var(--active-color);
-}
-
-.navItem.active::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background-color: var(--active-underline);
-  border-radius: 3px;
-}
-
-.navItem:hover {
-  color: var(--primary-color);
-}
-
-/* Search styles */
-.searchContainer {
-  position: relative;
-  width: 300px;
-  transition: width 0.3s ease;
-  z-index: 10;
-}
-
-.searchInput {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  padding-right: 2.5rem;
-  border-radius: 9999px;
-  border: none;
-  background-color: var(--bg-light);
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-}
-
-.searchInput:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.2);
-}
-
-/* This is the key part - when search is focused, expand it and hide navigation */
-@media (min-width: 1025px) {
-  .searchContainer:focus-within {
-    position: absolute;
-    right: 2rem;
-    width: calc(100% - 200px);
-  }
-
-  .searchContainer:focus-within ~ .navigation,
-  .searchContainer:focus-within + .navigation {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-.searchInput::placeholder {
-  color: #94a3b8;
-}
-
-.searchButton {
-  position: absolute;
-  right: 0.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.searchIcon {
-  width: 20px;
-  height: 20px;
-  color: #64748b;
-}
-
-/* Main content */
-.main {
-  flex: 1;
-  padding: 2rem;
-}
-
-/* Hero section */
 .hero {
   display: flex;
   align-items: center;
   gap: 4rem;
   max-width: 1200px;
   margin: 0 auto 4rem;
-  padding: 2rem;
+  padding: 4rem;
 }
 
 .heroContent {
@@ -210,11 +46,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  background-color: white;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .metricContent {
@@ -292,13 +123,9 @@
   justify-content: center;
 }
 
-/* Creative Time Section */
 .creativeTimeSection {
-  max-width: 1200px;
-  margin: 0 auto 4rem;
-  padding: 2rem;
-  background-color: white;
-  border-radius: 1rem;
+  top: -120px;
+  position: relative;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
@@ -315,15 +142,6 @@
   height: auto;
 }
 
-.creativeTimeText {
-  position: absolute;
-  font-family: "Comic Sans MS", cursive;
-  font-size: 2rem;
-  font-weight: bold;
-  color: #333;
-}
-
-/* What You Need Section */
 .whatYouNeedSection {
   max-width: 1200px;
   margin: 0 auto 4rem;
@@ -336,15 +154,17 @@
 }
 
 .sectionTitle {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 120%;
   display: inline-block;
-  background-color: white;
-  padding: 0.75rem 2rem;
+  padding: 2.5rem 4rem;
   border-radius: 0.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   font-size: 1.5rem;
   font-weight: 600;
   color: #4f46e5;
-  font-family: "Comic Sans MS", cursive;
+  font-family: 'Playwrite US Modern', serif;
+  background-image: url('/images/diy-section-title-bg.svg');
 }
 
 .materialsContainer {
@@ -352,9 +172,6 @@
   align-items: center;
   gap: 4rem;
   padding: 2rem;
-  background-color: white;
-  border-radius: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .materialsImage {
@@ -397,7 +214,6 @@
   color: #4b5563;
 }
 
-/* Tutorial Section */
 .tutorialSection {
   max-width: 1200px;
   margin: 0 auto 4rem;
@@ -407,7 +223,7 @@
   position: relative;
   width: 100%;
   height: 0;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  padding-bottom: 56.25%;
   overflow: hidden;
   border-radius: 1rem;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
@@ -445,138 +261,38 @@
   background-color: white;
 }
 
-.playButton svg {
-  color: var(--text-color);
+.stepByStepSectionContainer {
+  position: relative;
 }
 
-/* Media queries for responsiveness */
-@media (max-width: 1024px) {
-  /* Apply mobile-style UI to tablet as well */
-  .header {
-    flex-direction: column;
-    padding: 1rem;
-  }
-
-  .logo {
-    margin-right: 0;
-    margin-bottom: 1.5rem;
-    justify-content: center;
-  }
-
-  .navigation {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin: 0 auto 1.5rem;
-    max-width: 500px; /* Slightly wider for tablets */
-    overflow-x: visible;
-    order: 2;
-  }
-
-  .navItem {
-    flex-direction: column;
-    text-align: center;
-    padding: 0;
-    width: 80px; /* Slightly larger for tablets */
-  }
-
-  .navIcon {
-    width: 24px;
-    height: 24px;
-    margin: 0 auto;
-    padding: 12px;
-    border-radius: 50%;
-    background-color: white;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-
-  .navItem.active .navIcon {
-    background-color: #eef2ff;
-    color: var(--active-color);
-  }
-
-  .navItem.active::after {
-    display: none;
-  }
-
-  .searchContainer {
-    width: 100%;
-    margin: 0;
-    order: 3;
-  }
-
-  .searchInput {
-    width: 100%;
-    padding: 1rem 3rem 1rem 1rem;
-    border-radius: 9999px;
-    border: 1px solid #e5e7eb;
-  }
-
-  .searchButton {
-    right: 1rem;
-  }
-
-  .hero {
-    flex-direction: column;
-    gap: 2rem;
-    padding: 1rem;
-  }
-
-  .heroImageContainer {
-    max-width: 100%;
-  }
-
-  .projectMetrics {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .materialsContainer {
-    flex-direction: column;
-    gap: 2rem;
-  }
+.stepByStepSectionContainer:before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-image: url(/images/stripe-bg.svg);
+  background-repeat: repeat-y;
+  background-size: 100%;
+  background-position: center -22px;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
 }
 
-@media (max-width: 768px) {
-  .navigation {
-    max-width: 400px;
-  }
-
-  .navItem {
-    width: 70px;
-  }
-
-  .heroTitle {
-    font-size: 2rem;
-  }
-
-  .creativeTimeSection,
-  .whatYouNeedSection,
-  .tutorialSection {
-    padding: 1rem;
-  }
+.stepByStepSectionContainer:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-image: url(/images/step-by-step-deco-bg.svg);
+  background-repeat: repeat-y;
+  background-size: contain;
+  background-position: center 100px;
+  width: 100%;
+  height: 100%;
+  opacity: 0.7;
 }
 
-@media (max-width: 640px) {
-  .header {
-    padding: 1rem;
-  }
-
-  .logoText {
-    display: none;
-  }
-
-  .heroTitle {
-    font-size: 1.75rem;
-  }
-
-  .playButton {
-    width: 60px;
-    height: 60px;
-  }
-}
-
-/* Step-by-step Section */
 .stepByStepSection {
   max-width: 1200px;
   margin: 0 auto 4rem;
@@ -586,44 +302,6 @@
 .stepsContainer {
   position: relative;
   padding: 2rem;
-  background-color: white;
-  border-radius: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
-
-.decorativeElements {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.sunIcon {
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
-}
-
-.rulerIcon {
-  position: absolute;
-  top: 50%;
-  right: 2rem;
-  transform: rotate(45deg);
-}
-
-.scissorsIcon {
-  position: absolute;
-  bottom: 2rem;
-  right: 2rem;
-}
-
-.glueIcon {
-  position: absolute;
-  bottom: 2rem;
-  left: 2rem;
 }
 
 .stepsList {
@@ -639,9 +317,9 @@
   gap: 2rem;
   align-items: flex-start;
   padding: 1.5rem;
-  background-color: #f8fafc;
-  border-radius: 0.75rem;
-  border: 1px solid #e2e8f0;
+  box-shadow: 0px 2px 10px 0px rgba(143, 143, 143, 0.25);
+  background: #fff;
+  border-radius: 10px;
 }
 
 .stepImage {
@@ -686,7 +364,6 @@
   font-style: italic;
 }
 
-/* Related Videos Section */
 .relatedVideosSection {
   max-width: 1200px;
   margin: 0 auto 4rem;
@@ -726,7 +403,7 @@
 .relatedVideoImage {
   width: 100%;
   height: 0;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  padding-bottom: 56.25%;
   position: relative;
   overflow: hidden;
 }
@@ -762,8 +439,27 @@
   color: #6b7280;
 }
 
-/* Media queries for step-by-step and related videos */
 @media (max-width: 1024px) {
+  .hero {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem;
+  }
+
+  .heroImageContainer {
+    max-width: 100%;
+  }
+
+  .projectMetrics {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .materialsContainer {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
   .stepItem {
     flex-direction: column;
     gap: 1rem;
@@ -779,13 +475,16 @@
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-
-  .decorativeElements {
-    display: none;
-  }
 }
 
 @media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .creativeTimeSection,
+  .whatYouNeedSection,
+  .tutorialSection,
   .stepByStepSection,
   .relatedVideosSection {
     padding: 1rem;
