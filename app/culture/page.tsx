@@ -10,37 +10,37 @@ export default function CulturePage() {
   const videos = [
     {
       id: "1",
-      title: "Cultural Wonders: Traditions You Must See",
-      thumbnail: "/placeholder.svg?height=240&width=400",
-      description: "Exploring the rich cultural traditions from around the world.",
-      tags: ["culture", "traditions"],
+      title: "Holograms in Modern Entertainment",
+      thumbnail: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=400&q=80",
+      description: "How holographic technology is revolutionizing concerts, museums, and entertainment venues worldwide.",
+      tags: ["culture", "entertainment"],
       likes: 203,
       isLiked: false,
     },
     {
       id: "2",
-      title: "Global Cuisine: Stories Behind the Dishes",
-      thumbnail: "/placeholder.svg?height=240&width=400",
-      description: "Discover the cultural significance of iconic dishes from around the world.",
-      tags: ["culture", "cuisine"],
+      title: "Virtual Idols: Holographic Performers",
+      thumbnail: "https://images.unsplash.com/photo-1567722681579-c671cabd2810?auto=format&fit=crop&w=400&h=240",
+      description: "The cultural phenomenon of holographic virtual performers and their growing fanbase.",
+      tags: ["culture", "music"],
       likes: 178,
       isLiked: true,
     },
     {
       id: "3",
-      title: "Traditional Dances: Movement as Cultural Expression",
-      thumbnail: "/placeholder.svg?height=240&width=400",
-      description: "How dance preserves cultural identity and tells stories across generations.",
-      tags: ["culture", "dance"],
+      title: "Holographic Art: New Frontiers in Creativity",
+      thumbnail: "https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=400&q=80",
+      description: "Artists embracing holographic technology to create immersive installations and interactive experiences.",
+      tags: ["culture", "art"],
       likes: 145,
       isLiked: true,
     },
     {
       id: "4",
-      title: "Artisanal Crafts: Preserving Cultural Heritage",
-      thumbnail: "/placeholder.svg?height=240&width=400",
-      description: "Traditional craftsmanship that keeps cultural techniques alive.",
-      tags: ["culture", "crafts"],
+      title: "Traditional Meets Tech: Cultural Heritage in Holograms",
+      thumbnail: "https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=400&q=80",
+      description: "How museums and cultural institutions use holograms to preserve and showcase cultural artifacts.",
+      tags: ["culture", "heritage"],
       likes: 92,
       isLiked: false,
     },
@@ -52,7 +52,7 @@ export default function CulturePage() {
 
       <main className={styles.main}>
         <div className={styles.container}>
-          <h1 className={styles.pageTitle}>Culture videos</h1>
+          <h1 className={styles.pageTitle}>Hologram Culture</h1>
 
           <div className={styles.videoGrid}>
             {videos.map((video) => (

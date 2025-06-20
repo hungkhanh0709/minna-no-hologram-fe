@@ -12,37 +12,37 @@ export default function HomePage() {
   const videos = [
     {
       id: "1",
-      title: "Cultural Wonders: Traditions You Must See",
-      thumbnail: "/placeholder.svg?height=240&width=400",
-      description: "Body text for whatever you'd like to add more to the subheading.",
-      tags: ["science", "universe"],
+      title: "How Holograms Work: The Science Explained",
+      thumbnail: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=400&q=80",
+      description: "Dive into the fascinating science behind holography and how light creates 3D illusions.",
+      tags: ["hologram", "science"],
       likes: 142,
       isLiked: false,
     },
     {
       id: "2",
-      title: "Cultural Wonders: Traditions You Must See",
-      thumbnail: "/placeholder.svg?height=240&width=400",
-      description: "Body text for whatever you'd like to add more to the subheading.",
-      tags: ["science", "universe"],
-      likes: 15,
+      title: "Hologram Video Projection: Smartphone Demo",
+      thumbnail: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80",
+      description: "A step-by-step guide to building a simple hologram projector using everyday materials and your smartphone.",
+      tags: ["DIY", "hologram", "projector"],
+      likes: 87,
       isLiked: true,
     },
     {
       id: "3",
-      title: "Cultural Wonders: Traditions You Must See",
-      thumbnail: "/placeholder.svg?height=240&width=400",
-      description: "Body text for whatever you'd like to add more to the subheading.",
-      tags: ["science", "universe"],
-      likes: 89,
+      title: "Holographic Art: The Future of Visual Storytelling",
+      thumbnail: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80",
+      description: "Explore how artists are using holograms to create immersive and interactive art experiences.",
+      tags: ["hologram", "art", "technology"],
+      likes: 65,
       isLiked: false,
     },
     {
       id: "4",
-      title: "Cultural Wonders: Traditions You Must See",
-      thumbnail: "/placeholder.svg?height=240&width=400",
-      description: "Body text for whatever you'd like to add more to the subheading.",
-      tags: ["science", "universe"],
+      title: "Top 5 Hologram Applications in Everyday Life",
+      thumbnail: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80",
+      description: "From concerts to medical imaging, discover how holograms are changing the world around us.",
+      tags: ["hologram", "technology", "innovation"],
       likes: 234,
       isLiked: true,
     },
@@ -55,10 +55,9 @@ export default function HomePage() {
       <main>
         <section className={styles.hero}>
           <div className={styles.heroContent}>
-            <h1>Landing page title</h1>
+            <h1>Explore the World of Holograms</h1>
             <p>
-              Subheading that sets up context, shares more info about the website, or generally gets people psyched to
-              keep scrolling.
+              Discover the magic of 3D holographic projections, learn how to create your own DIY hologram displays, and explore the fascinating science behind this cutting-edge technology.
             </p>
             <button className={styles.playButton}>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -152,10 +151,9 @@ export default function HomePage() {
                 <h2 className={styles.diyTitle}>Recent DIY Hologram</h2>
               </div>
 
-              <h3 className={styles.diyProjectTitle}>Lorem ipsum dolor sit amet, consectetur adipiscing ipsum</h3>
+              <h3 className={styles.diyProjectTitle}>Build Your Own Hologram Projector</h3>
               <p className={styles.diyDescription}>
-                Experience the future of payments: fast, secure, and tailored for the next generation's convenience and
-                trust.
+                Create a mesmerizing hologram projector at home using simple materials and your smartphone. Impress your friends and explore the magic of 3D light illusions!
               </p>
 
               <div className={styles.diyMetrics}>
@@ -201,7 +199,7 @@ export default function HomePage() {
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
               viewport={{ once: true, amount: 0.2 }}
             >
-              <img src="/placeholder.svg?height=400&width=400" alt="DIY Hologram Pyramid" className={styles.diyImage} />
+              <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="DIY Hologram Projector" className={styles.diyImage} />
             </motion.div>
           </div>
           <motion.div

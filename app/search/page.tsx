@@ -1,84 +1,85 @@
 "use client"
 
 import { useSearchParams } from "next/navigation"
+import { Suspense } from "react"
 import styles from "./search.module.scss"
 import { Header } from "@/components/Header"
 import { VideoCard } from "@/components/VideoCard"
 
-export default function SearchPage() {
+function SearchResults() {
   const searchParams = useSearchParams()
   const query = searchParams.get("q") || ""
 
   const allVideos = [
     {
       id: "1",
-      title: "Cultural Wonders: Traditions You Must See",
-      thumbnail: "/images/food-wine.png",
-      description: "Body text for whatever you'd like to add more to the subheading.",
-      tags: ["culture", "traditions"],
+      title: "Hologram Technology in Modern Entertainment",
+      thumbnail: "https://images.unsplash.com/photo-1621075160523-b936ad96132a?auto=format&fit=crop&w=400&h=240",
+      description: "Discover how hologram technology is revolutionizing concerts, theater, and movie experiences.",
+      tags: ["culture", "entertainment"],
       likes: 142,
       isLiked: false,
     },
     {
       id: "2",
-      title: "Quantum Physics: The Mysteries of the Universe",
-      thumbnail: "/images/croissant.png",
-      description: "Exploring the fascinating world of quantum mechanics and its implications.",
-      tags: ["science", "universe"],
+      title: "The Physics of Holographic Technology",
+      thumbnail: "https://images.unsplash.com/photo-1621075160523-b936ad96132a?auto=format&fit=crop&w=400&h=240",
+      description: "Exploring the fascinating world of light physics that makes holograms possible.",
+      tags: ["science", "physics"],
       likes: 287,
       isLiked: true,
     },
     {
       id: "3",
-      title: "Ancient Civilizations: Lost Technologies",
-      thumbnail: "/placeholder.svg?height=240&width=400",
-      description: "Exploring the remarkable technologies of ancient civilizations.",
-      tags: ["history", "ancient"],
+      title: "Holography: From Science Fiction to Reality",
+      thumbnail: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=400&h=240",
+      description: "Tracing the evolution of hologram technology from sci-fi concepts to real-world applications.",
+      tags: ["history", "technology"],
       likes: 89,
       isLiked: false,
     },
     {
       id: "4",
       title: "DIY Hologram Pyramid Tutorial",
-      thumbnail: "/placeholder.svg?height=240&width=400",
-      description: "Learn how to create amazing hologram effects at home.",
-      tags: ["diy", "hologram"],
+      thumbnail: "https://images.unsplash.com/photo-1626544827763-d516dce335e2?auto=format&fit=crop&w=400&h=240",
+      description: "Learn how to create amazing hologram effects at home with simple materials.",
+      tags: ["diy", "tutorial"],
       likes: 234,
       isLiked: true,
     },
     {
       id: "5",
-      title: "The Science Behind Black Holes",
-      thumbnail: "/placeholder.svg?height=240&width=400",
-      description: "Understanding the physics of these cosmic phenomena.",
-      tags: ["science", "universe"],
+      title: "Quantum Holography: The Future of Computing",
+      thumbnail: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=400&h=240",
+      description: "Understanding how quantum computing and holography might merge in future technologies.",
+      tags: ["science", "quantum"],
       likes: 156,
       isLiked: false,
     },
     {
       id: "6",
-      title: "Medieval Castles: Engineering Marvels",
-      thumbnail: "/placeholder.svg?height=240&width=400",
-      description: "Discover the ingenious design and construction of medieval fortresses.",
-      tags: ["history", "medieval"],
+      title: "Hologram Museums: Preserving History in 3D",
+      thumbnail: "https://images.unsplash.com/photo-1567722681579-c671cabd2810?auto=format&fit=crop&w=400&h=240",
+      description: "Discover how museums are using holographic displays to bring artifacts and history to life.",
+      tags: ["history", "museums"],
       likes: 203,
       isLiked: true,
     },
     {
       id: "7",
-      title: "Global Cuisine: Stories Behind the Dishes",
-      thumbnail: "/placeholder.svg?height=240&width=400",
-      description: "Discover the cultural significance of iconic dishes from around the world.",
-      tags: ["culture", "cuisine"],
+      title: "Virtual Idols: Holographic Performers in Global Culture",
+      thumbnail: "https://images.unsplash.com/photo-1579547621113-e4bb2a19bdd6?auto=format&fit=crop&w=400&h=240",
+      description: "Exploring the phenomenon of virtual holographic performers captivating audiences worldwide.",
+      tags: ["culture", "entertainment"],
       likes: 178,
       isLiked: false,
     },
     {
       id: "8",
-      title: "Creative DIY Projects for Beginners",
-      thumbnail: "/placeholder.svg?height=240&width=400",
-      description: "Easy and fun DIY projects you can do at home.",
-      tags: ["diy", "creative"],
+      title: "Advanced Hologram Projects for Enthusiasts",
+      thumbnail: "https://images.unsplash.com/photo-1506399558188-acca6f8cbf41?auto=format&fit=crop&w=400&h=240",
+      description: "Take your DIY hologram skills to the next level with these intermediate projects.",
+      tags: ["diy", "advanced"],
       likes: 92,
       isLiked: true,
     },
@@ -142,9 +143,9 @@ export default function SearchPage() {
                     <line x1="8" y1="11" x2="14" y2="11" />
                   </svg>
                 </div>
-                <h3 className={styles.noResultsTitle}>No results found</h3>
+                <h3 className={styles.noResultsTitle}>No hologram content found</h3>
                 <p className={styles.noResultsText}>
-                  Try adjusting your search terms or browse our categories to discover amazing content.
+                  Try adjusting your search terms or browse our categories to discover amazing hologram videos and tutorials.
                 </p>
               </div>
             )
@@ -162,9 +163,9 @@ export default function SearchPage() {
                   <path d="m21 21-4.35-4.35" />
                 </svg>
               </div>
-              <h3 className={styles.searchPromptTitle}>Start your search</h3>
+              <h3 className={styles.searchPromptTitle}>Discover Hologram Content</h3>
               <p className={styles.searchPromptText}>
-                Enter keywords to find videos about science, history, culture, or DIY projects.
+                Enter keywords to find videos about hologram technology, DIY hologram projects, holographic history, or cultural impacts of holograms.
               </p>
             </div>
           )}
@@ -173,5 +174,13 @@ export default function SearchPage() {
       </main>
 
     </div>
+  )
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<div className={styles.loading}>Loading search results...</div>}>
+      <SearchResults />
+    </Suspense>
   )
 }

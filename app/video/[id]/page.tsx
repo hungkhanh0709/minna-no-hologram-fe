@@ -6,46 +6,46 @@ import { FaPlay } from "react-icons/fa6";
 export default function VideoDetailPage({ params }: { params: { id: string } }) {
   const videoData = {
     id: params.id,
-    title: "Unlocking the Secrets of the Universe",
-    thumbnail: "/placeholder.svg?height=600&width=1200",
-    tags: ["science", "universe"],
+    title: "Hologram Technology: From Science Fiction to Reality",
+    thumbnail: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=1200&h=600",
+    tags: ["hologram", "technology"],
     comments: [
       {
         id: 1,
         avatar: "blue-blob",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+        text: "This explanation of hologram technology is amazing! I never knew the history went back to the 1940s.",
       },
       {
         id: 2,
         avatar: "white-bear",
-        text: "At vero eos et accusamus et iusto odio dignissimos ducimus qui",
+        text: "The part about interference patterns and laser light coherence really helped me understand how holograms work.",
       },
       {
         id: 3,
         avatar: "blue-blob",
-        text: "Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him",
+        text: "I tried making the DIY hologram pyramid you mentioned at 3:45 in the video. It worked perfectly with my smartphone!",
       },
       {
         id: 4,
         avatar: "white-bear",
-        text: "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms",
+        text: "Could you make more videos about holographic displays in medical imaging? That application seems revolutionary.",
       },
       {
         id: 5,
         avatar: "blue-blob",
-        text: "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo",
+        text: "The comparison between conventional 3D and true holography was very informative. Thanks for clarifying the differences!",
       },
     ],
     images: [
       {
         id: 1,
-        src: "/placeholder.svg?height=400&width=800",
-        alt: "Galaxy with black hole",
+        src: "https://images.unsplash.com/photo-1579547621113-e4bb2a19bdd6?auto=format&fit=crop&w=400&h=240",
+        alt: "Hologram display in a dark room showing 3D data",
       },
       {
         id: 2,
-        src: "/placeholder.svg?height=400&width=800",
-        alt: "Space station and rocket launch",
+        src: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&w=800&h=400",
+        alt: "Futuristic holographic interface with data visualization",
       },
     ],
   }

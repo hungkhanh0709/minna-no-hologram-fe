@@ -34,9 +34,9 @@ export default function DIYPage() {
         >
           <div className={styles.hero}>
             <motion.div className={styles.heroContent} variants={fadeUp(0.1)}>
-              <h1 className={styles.heroTitle}>Lorem ipsum dolor sit amet, consectetur adipiscing</h1>
+              <h1 className={styles.heroTitle}>DIY Hologram Projector: Make 3D Images at Home</h1>
               <p className={styles.heroSubtitle}>
-                Experience the future of payments: fast, secure, and tailored for the next generation's convenience and trust.
+                Learn how to create a simple hologram projector using a smartphone and transparent plastic. This fun project lets you display floating 3D images and videos right in your room!
               </p>
 
               <div className={styles.projectMetrics}>
@@ -71,7 +71,7 @@ export default function DIYPage() {
                 </div>
                 <span>The Finished Product</span>
               </div>
-              <img src="/placeholder.svg?height=400&width=400" alt="Hologram Pyramid" className={styles.heroImage} />
+              <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="DIY Hologram Projector Result" className={styles.heroImage} />
               <div className={styles.userLikes}>
                 <div className={styles.likesText}>
                   <span>From Zero to <br />100K+ Users Liked</span>
@@ -117,13 +117,18 @@ export default function DIYPage() {
 
           <div className={styles.materialsContainer}>
             <motion.div className={styles.materialsImage} variants={fadeUp(0.4)}>
-              <img src="/placeholder.svg?height=300&width=400" alt="DIY Materials" className={styles.materialsImg} />
+              <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="DIY Materials for Hologram Projector" className={styles.materialsImg} />
             </motion.div>
 
             <motion.div className={styles.materialsList} variants={fadeUp(0.5)}>
               {[
-                "White flowers", "Coloring for cut flowers", "Drink cup",
-                "Disposable gloves", "Scissors", "4 small ziplock bags", "Newspaper (for use on a desk)"
+                "Clear plastic sheet (CD case or transparency)", 
+                "Ruler and pencil", 
+                "Scissors or craft knife",
+                "Smartphone with hologram video", 
+                "Template for the pyramid", 
+                "Tape (clear preferred)", 
+                "Dark room for best results"
               ].map((text, i) => (
                 <div key={i} className={styles.materialItem}>
                   <div className={styles.materialNumber}>{i + 1}</div>
@@ -146,7 +151,7 @@ export default function DIYPage() {
             <h2 className={styles.sectionTitle}>Tutorial</h2>
           </div>
           <motion.div className={styles.videoContainer} variants={fadeUp(0.3)}>
-            <img src="/placeholder.svg?height=400&width=800" alt="Tutorial Video" className={styles.tutorialVideo} />
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" alt="Tutorial Video" className={styles.tutorialVideo} />
             <button className={styles.playButton}>
               <FaPlay size={32} />
             </button>
@@ -167,17 +172,31 @@ export default function DIYPage() {
 
           <motion.div className={styles.stepsContainer} variants={fadeUp(0.3)}>
             <div className={styles.stepsList}>
-              {[1, 2, 3].map((step, i) => (
+              {[
+                {
+                  title: "Draw Your Template",
+                  description: "Print or draw a template with four identical trapezoid shapes. For a 3-5 inch phone, make the small end about 1 cm wide and the wide end about 6 cm, with height around 3.5 cm.",
+                  image: "https://images.unsplash.com/photo-1626544827763-d516dce335e2?auto=format&fit=crop&w=400&h=240"
+                },
+                {
+                  title: "Cut and Assemble the Pyramid",
+                  description: "Carefully cut the plastic sheet following your template. Tape the trapezoids together at their sides to form a pyramid with the narrow ends meeting at the top.",
+                  image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=300&q=80"
+                },
+                {
+                  title: "Set Up and Project",
+                  description: "Place your pyramid upside down on your smartphone screen, centered over a hologram video. Turn off the lights for the best effect and watch your 3D hologram float in the air!",
+                  image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=300&q=80"
+                }
+              ].map((step, i) => (
                 <motion.div key={i} className={styles.stepItem} variants={fadeUp(0.3 + i * 0.1)}>
                   <div className={styles.stepImage}>
-                    <img src={`/placeholder.svg?height=300&width=300`} alt={`Step ${step}`} className={styles.stepImg} />
+                    <img src={step.image} alt={`Step ${i+1}`} className={styles.stepImg} />
                   </div>
                   <div className={styles.stepContent}>
-                    <div className={styles.stepBadge}>{`STEP ${step}`}</div>
-                    <h3 className={styles.stepTitle}>Lorem ipsum dolor sit amet, consectetur.</h3>
-                    <p className={styles.stepDescription}>
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                    </p>
+                    <div className={styles.stepBadge}>{`STEP ${i+1}`}</div>
+                    <h3 className={styles.stepTitle}>{step.title}</h3>
+                    <p className={styles.stepDescription}>{step.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -196,14 +215,25 @@ export default function DIYPage() {
           <motion.div className={styles.container} variants={fadeUp(0.3)}>
             <h2 className={styles.relatedVideosTitle}>Related DIY videos</h2>
             <div className={styles.relatedVideosGrid}>
-              {[1, 2].map((num) => (
-                <motion.div key={num} className={styles.relatedVideoCard} variants={fadeUp(0.3 + num * 0.1)}>
+              {[
+                {
+                  title: "Advanced Hologram Techniques",
+                  description: "Take your DIY hologram to the next level with multi-panel projections and colored effects.",
+                  image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=300&q=80"
+                },
+                {
+                  title: "Finding the Best Hologram Videos",
+                  description: "Learn where to find high-quality hologram videos specifically designed for pyramid projectors.",
+                  image: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=300&q=80"
+                }
+              ].map((video, i) => (
+                <motion.div key={i} className={styles.relatedVideoCard} variants={fadeUp(0.3 + i * 0.1)}>
                   <div className={styles.relatedVideoImage}>
-                    <img src="/placeholder.svg?height=200&width=300" alt={`Video title ${num}`} className={styles.relatedVideoImg} />
+                    <img src={video.image} alt={video.title} className={styles.relatedVideoImg} />
                   </div>
                   <div className={styles.relatedVideoContent}>
-                    <h3 className={styles.relatedVideoTitle}>Video title {num}</h3>
-                    <p className={styles.relatedVideoDescription}>Description for related video {num}.</p>
+                    <h3 className={styles.relatedVideoTitle}>{video.title}</h3>
+                    <p className={styles.relatedVideoDescription}>{video.description}</p>
                   </div>
                 </motion.div>
               ))}
