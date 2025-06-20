@@ -1,6 +1,6 @@
 import type React from "react"
 import { Inter } from "next/font/google"
-import { HeroUIProvider } from "@heroui/react"
+import { ThemeProvider } from "@/components/theme-provider"
 import '@/styles/main.scss';
 import '@/styles/globals.scss'
 
@@ -20,8 +20,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <HeroUIProvider>{children}</HeroUIProvider>
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
-    </html>
+    </html >
   )
 }

@@ -2,7 +2,7 @@
 
 import { Header } from "@/components/Header"
 import { VideoCard } from "@/components/VideoCard"
-import styles from "./history.module.css"
+import styles from "./history.module.scss"
 import { Footer } from "@/components/Footer"
 
 

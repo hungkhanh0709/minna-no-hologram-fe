@@ -1,7 +1,7 @@
 "use client"
 
 import { Header } from "@/components/Header"
-import styles from "./science.module.css"
+import styles from "./science.module.scss"
 import { VideoCard } from "@/components/VideoCard"
 import { Footer } from "@/components/Footer"
 

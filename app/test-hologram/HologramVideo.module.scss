@@ -1,0 +1,38 @@
+.container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  overflow: hidden;
+}
+
+.video {
+  position: absolute;
+  width: 25vw;
+  height: auto;
+  transform-origin: center center;
+}
+
+.top {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) rotate(180deg);
+}
+
+.bottom {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.left {
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%) rotate(90deg);
+}
+
+.right {
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%) rotate(-90deg);
+}

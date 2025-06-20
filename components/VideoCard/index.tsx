@@ -39,7 +39,7 @@ export function VideoCard({
   }
 
   return (
-    <Link href={`/videos/${id}`} className={`${styles.card} ${className}`}>
+    <Link href={`/video/${id}`} className={`${styles.card} ${className}`}>
       {/* Thumbnail */}
       <div className={styles.thumbnail}>
         <img src={thumbnail || "/placeholder.svg"} alt={title} />

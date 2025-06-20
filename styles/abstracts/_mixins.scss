@@ -38,7 +38,7 @@
 }
 
 @mixin dark-mode {
-  @media (prefers-color-scheme: dark) {
+  [data-theme='dark'] & {
     @content;
   }
 }

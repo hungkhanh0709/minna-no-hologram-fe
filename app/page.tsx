@@ -1,5 +1,6 @@
 "use client"
 
+import { motion } from "framer-motion"
 import Link from "next/link"
 import { Header } from "@/components/Header"
 import { VideoCard } from "@/components/VideoCard"
@@ -76,29 +77,52 @@ export default function HomePage() {
             <h2 className={styles.sectionTitle}>Recent video upload</h2>
 
             <div className={styles.videoGrid}>
-              {videos.map((video) => (
-                <VideoCard
+
+              {videos.map((video, index) => (
+                <motion.div
                   key={video.id}
-                  id={video.id}
-                  title={video.title}
-                  description={video.description}
-                  thumbnail={video.thumbnail}
-                  tags={video.tags}
-                  likes={video.likes}
-                  initialLiked={video.isLiked}
-                />
+                  initial={{ opacity: 0, y: 100 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <VideoCard
+                    key={video.id}
+                    id={video.id}
+                    title={video.title}
+                    description={video.description}
+                    thumbnail={video.thumbnail}
+                    tags={video.tags}
+                    likes={video.likes}
+                    initialLiked={video.isLiked}
+                  />
+                </motion.div>
               ))}
             </div>
 
-            <div className={styles.viewMoreContainer}>
-              <button className={styles.viewMoreButton}>View more</button>
-            </div>
+            <motion.div
+              className={styles.viewMoreContainer}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <button className={styles.viewMoreButton}><span>View more</span></button>
+            </motion.div>
+
           </div>
         </section>
 
         <section className={styles.recentDiy}>
           <div className={styles.container}>
-            <div className={styles.diyContent}>
+
+            <motion.div
+              className={styles.diyContent}
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              viewport={{ once: true, amount: 0.2 }}
+            >
               <div className={styles.diyHeader}>
                 <div className={styles.diyIcon}>
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -168,19 +192,30 @@ export default function HomePage() {
                   />
                 </svg>
               </Link>
-            </div>
+            </motion.div>
 
-            <div className={styles.diyImageContainer}>
+            <motion.div
+              className={styles.diyImageContainer}
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+              viewport={{ once: true, amount: 0.2 }}
+            >
               <img src="/placeholder.svg?height=400&width=400" alt="DIY Hologram Pyramid" className={styles.diyImage} />
-            </div>
+            </motion.div>
           </div>
-
-          <div className={styles.viewMoreContainer}>
+          <motion.div
+            className={styles.viewMoreContainer}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.5 }}
+            viewport={{ once: true, amount: 0.2 }}
+          >
             <button className={styles.viewMoreButton}>View more</button>
-          </div>
+          </motion.div>
         </section>
       </main>
       <Footer />
-    </div>
+    </div >
   )
 }
