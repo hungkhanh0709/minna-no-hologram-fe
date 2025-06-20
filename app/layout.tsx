@@ -1,6 +1,6 @@
 import type React from "react"
 import { Inter } from "next/font/google"
-import { ThemeProvider } from "@/components/theme-provider"
+// import { ThemeProvider } from "@/components/theme-provider"
 import '@/styles/main.scss';
 import '@/styles/globals.scss'
 
@@ -20,9 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+        {/* <ThemeProvider> */}
+        {children}
+        {/* </ThemeProvider> */}
       </body>
     </html >
   )
