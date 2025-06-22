@@ -2,21 +2,21 @@
 
 ![Hologram Project](https://images.unsplash.com/photo-1621075160523-b936ad96132a?auto=format&fit=crop&w=1200&h=400)
 
-> Learn about holograms and create your own hologram display at home!
+> Learn about holograms and create your own hologram projector at home!
 
 ## What is this?
 
 This is a website about holograms. You can:
 - Learn how holograms work
 - Make your own hologram projector
-- Explore the science, history and culture of holograms
+- Explore the science, history and culture via hologram videos
 
 ## Main Features
 
 - **Videos and Tutorials**: Watch and learn about hologram technology
-- **DIY Projects**: Make your own hologram display with easy steps
-- **Knowledge Center**: Learn about hologram science, history, and cultural impact
-- **Search**: Find videos and tutorials by topic
+- **DIY Projects**: Make your own hologram projector with easy steps
+- **Knowledge Center**: Learn science, history, and cultural via hologram videos
+- **Search**: Search videos and DIY tutorials
 - **Mobile Friendly**: Works on all devices
 
 ## Technology Used
