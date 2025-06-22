@@ -191,7 +191,7 @@
 .mobileHeader {
   @include flex(column, flex-start, stretch);
   padding: $spacing-6 $spacing-4;
-  gap: $spacing-6;
+  gap: 1rem;
 
   @media (min-width: $breakpoint-lg) {
     display: none;

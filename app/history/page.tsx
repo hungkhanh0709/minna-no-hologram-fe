@@ -16,6 +16,7 @@ export default function HistoryPage() {
       tags: ["history", "ancient"],
       likes: 87,
       isLiked: false,
+      slug: ''
     },
     {
       id: "2",
@@ -25,6 +26,7 @@ export default function HistoryPage() {
       tags: ["history", "medieval"],
       likes: 142,
       isLiked: true,
+      slug: ''
     },
     {
       id: "3",
@@ -34,6 +36,7 @@ export default function HistoryPage() {
       tags: ["history", "renaissance"],
       likes: 98,
       isLiked: true,
+      slug: ''
     },
     {
       id: "4",
@@ -43,6 +46,7 @@ export default function HistoryPage() {
       tags: ["history", "industrial"],
       likes: 56,
       isLiked: false,
+      slug: ''
     },
   ]
 
@@ -57,6 +61,7 @@ export default function HistoryPage() {
           <div className={styles.videoGrid}>
             {videos.map((video) => (
               <VideoCard
+                slug={video.slug}
                 key={video.id}
                 id={video.id}
                 title={video.title}

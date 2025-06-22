@@ -1,8 +1,22 @@
+@import './styles/abstracts/variables';
+@import './styles/abstracts/mixins';
+
 .videoGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  margin-bottom: 3rem;
+  gap: $spacing-8;
+  margin-bottom: $spacing-12;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+    gap: $spacing-6;
+    margin-bottom: $spacing-8;
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $spacing-4;
+  }
 }
 
 .main {
@@ -14,18 +28,18 @@
   padding-bottom: 1.5rem
 }
 
-@media (max-width: 1024px) {
-  .videoGrid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
+// @media (max-width: 1024px) {
+//   .videoGrid {
+//     grid-template-columns: 1fr;
+//     gap: 1.5rem;
+//   }
 
-  .main {
-    padding: 1.5rem;
-  }
+//   .main {
+//     padding: 1.5rem;
+//   }
 
-  .pageTitle {
-    font-size: 1.5rem;
-    padding-bottom: 1rem
-  }
-}
+//   .pageTitle {
+//     font-size: 1.5rem;
+//     padding-bottom: 1rem
+//   }
+// }

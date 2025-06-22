@@ -15,10 +15,11 @@ export interface VideoCardProps {
   likes: number
   initialLiked?: boolean
   className?: string
+  slug: string
 }
 
 export function VideoCard({
-  id,
+  slug,
   title,
   description,
   thumbnail,
@@ -39,7 +40,7 @@ export function VideoCard({
   }
 
   return (
-    <Link href={`/video/${id}`} className={`${styles.card} ${className}`}>
+    <Link href={`/video/${slug}`} className={`${styles.card} ${className}`}>
       {/* Thumbnail */}
       <div className={styles.thumbnail}>
         <img src={thumbnail || "/placeholder.svg"} alt={title} />

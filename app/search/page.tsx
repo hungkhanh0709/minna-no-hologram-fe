@@ -5,6 +5,9 @@ import { useSearchParams } from "next/navigation"
 import styles from "./search.module.scss"
 import { Header } from "@/components/Header"
 import { VideoCard } from "@/components/VideoCard"
+import { motion } from "framer-motion"
+import { useEffect, useState } from "react"
+import { API_URLS } from "@/lib/api"
 
 export default function SearchPage() {
   return (
@@ -25,89 +28,29 @@ function SearchResults() {
   const searchParams = useSearchParams()
   const query = searchParams.get("q") || ""
 
-  const allVideos = [
-    {
-      id: "1",
-      title: "Cultural Wonders: Traditions You Must See",
-      thumbnail: "/images/food-wine.png",
-      description: "Body text for whatever you'd like to add more to the subheading.",
-      tags: ["culture", "traditions"],
-      likes: 142,
-      isLiked: false,
-    },
-    {
-      id: "2",
-      title: "Quantum Physics: The Mysteries of the Universe",
-      thumbnail: "/images/croissant.png",
-      description: "Exploring the fascinating world of quantum mechanics and its implications.",
-      tags: ["science", "universe"],
-      likes: 287,
-      isLiked: true,
-    },
-    {
-      id: "3",
-      title: "Ancient Civilizations: Lost Technologies",
-      thumbnail: "/placeholder.svg?height=240&width=400",
-      description: "Exploring the remarkable technologies of ancient civilizations.",
-      tags: ["history", "ancient"],
-      likes: 89,
-      isLiked: false,
-    },
-    {
-      id: "4",
-      title: "DIY Hologram Pyramid Tutorial",
-      thumbnail: "/placeholder.svg?height=240&width=400",
-      description: "Learn how to create amazing hologram effects at home.",
-      tags: ["diy", "hologram"],
-      likes: 234,
-      isLiked: true,
-    },
-    {
-      id: "5",
-      title: "The Science Behind Black Holes",
-      thumbnail: "/placeholder.svg?height=240&width=400",
-      description: "Understanding the physics of these cosmic phenomena.",
-      tags: ["science", "universe"],
-      likes: 156,
-      isLiked: false,
-    },
-    {
-      id: "6",
-      title: "Medieval Castles: Engineering Marvels",
-      thumbnail: "/placeholder.svg?height=240&width=400",
-      description: "Discover the ingenious design and construction of medieval fortresses.",
-      tags: ["history", "medieval"],
-      likes: 203,
-      isLiked: true,
-    },
-    {
-      id: "7",
-      title: "Global Cuisine: Stories Behind the Dishes",
-      thumbnail: "/placeholder.svg?height=240&width=400",
-      description: "Discover the cultural significance of iconic dishes from around the world.",
-      tags: ["culture", "cuisine"],
-      likes: 178,
-      isLiked: false,
-    },
-    {
-      id: "8",
-      title: "Creative DIY Projects for Beginners",
-      thumbnail: "/placeholder.svg?height=240&width=400",
-      description: "Easy and fun DIY projects you can do at home.",
-      tags: ["diy", "creative"],
-      likes: 92,
-      isLiked: true,
-    },
-  ]
+  const [videos, setVideos] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
 
-  const filteredVideos = query
-    ? allVideos.filter(
-      (video) =>
-        video.title.toLowerCase().includes(query.toLowerCase()) ||
-        video.description.toLowerCase().includes(query.toLowerCase()) ||
-        video.tags.some((tag) => tag.toLowerCase().includes(query.toLowerCase())),
-    )
-    : allVideos
+  useEffect(() => {
+    if (!query) return
+
+    const fetchData = async () => {
+      try {
+        const res = await fetch(`${API_URLS.SEARCH}?p=${query}`, { credentials: "include" })
+        if (!res.ok) throw new Error("Failed to fetch")
+        const data = await res.json()
+        const results = (data.results || []).filter((item: any) => item.type === "video").map((item: any) => item.content)
+        setVideos(results)
+      } catch (err) {
+        console.error("Error:", err)
+        setVideos([])
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchData()
+  }, [query])
 
   return (
     <>
@@ -115,29 +58,52 @@ function SearchResults() {
         <h1 className={styles.pageTitle}>
           {query ? `Search results for "${query}"` : "Search"}
         </h1>
-        {query && (
+        {query && !loading && (
           <p className={styles.resultsCount}>
-            {filteredVideos.length} {filteredVideos.length === 1 ? "result" : "results"} found
+            {videos.length} {videos.length === 1 ? "result" : "results"} found
           </p>
         )}
       </div>
 
       {query ? (
-        filteredVideos.length > 0 ? (
-          <div className={styles.videoGrid}>
-            {filteredVideos.map((video) => (
-              <VideoCard
+        loading ? (
+          <p>Loading results...</p>
+        ) : videos.length > 0 ? (
+          <motion.div
+            className={styles.videoGrid}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={{
+              hidden: {},
+              visible: {
+                transition: {
+                  staggerChildren: 0.1,
+                },
+              },
+            }}
+          >
+            {videos.map((video) => (
+              <motion.div
                 key={video.id}
-                id={video.id}
-                title={video.title}
-                description={video.description}
-                thumbnail={video.thumbnail}
-                tags={video.tags}
-                likes={video.likes}
-                initialLiked={video.isLiked}
-              />
+                variants={{
+                  hidden: { opacity: 0, y: 60 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+                }}
+              >
+                <VideoCard
+                  slug={video.slug}
+                  id={video.id}
+                  title={video.title}
+                  description={video.category?.name}
+                  thumbnail={video.thumbnail}
+                  tags={(video.tags || []).map((tag: any) => tag.name)}
+                  likes={video.likeCount}
+                  initialLiked={false}
+                />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         ) : (
           <div className={styles.noResults}>
             <div className={styles.noResultsIcon}>

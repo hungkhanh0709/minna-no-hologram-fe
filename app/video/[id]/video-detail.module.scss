@@ -252,3 +252,15 @@
     height: 60px;
   }
 }
+
+.videoIframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: 12px;
+}
+
+.relatedGrid {
+  display: flex;
+  gap: 2rem
+}

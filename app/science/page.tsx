@@ -15,6 +15,7 @@ export default function SciencePage() {
       tags: ["science", "universe"],
       likes: 287,
       isLiked: true,
+      slug: ''
     },
     {
       id: "2",
@@ -24,6 +25,7 @@ export default function SciencePage() {
       tags: ["science", "universe"],
       likes: 156,
       isLiked: false,
+      slug: ''
     },
     {
       id: "3",
@@ -33,6 +35,7 @@ export default function SciencePage() {
       tags: ["science", "biology"],
       likes: 203,
       isLiked: true,
+      slug: ''
     },
     {
       id: "4",
@@ -42,6 +45,7 @@ export default function SciencePage() {
       tags: ["science", "environment"],
       likes: 89,
       isLiked: false,
+      slug: ''
     },
   ]
 
@@ -56,6 +60,7 @@ export default function SciencePage() {
           <div className={styles.videoGrid}>
             {videos.map((video) => (
               <VideoCard
+                slug={video.slug}
                 key={video.id}
                 id={video.id}
                 title={video.title}

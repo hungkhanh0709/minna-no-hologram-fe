@@ -1,161 +1,119 @@
-import styles from "./video-detail.module.scss"
-import { Header } from "@/components/Header"
-import Image from "next/image"
-import { FaPlay } from "react-icons/fa6";
+"use client";
+
+import { useEffect, useState } from "react";
+import styles from "./video-detail.module.scss";
+import { API_URLS } from "@/lib/api";
+import { Header } from "@/components/Header";
+import { VideoCard } from "@/components/VideoCard";
+import Image from "next/image";
 
 export default function VideoDetailPage({ params }: { params: { id: string } }) {
-  const videoData = {
-    id: params.id,
-    title: "Unlocking the Secrets of the Universe",
-    thumbnail: "/placeholder.svg?height=600&width=1200",
-    tags: ["science", "universe"],
-    comments: [
-      {
-        id: 1,
-        avatar: "blue-blob",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
-      },
-      {
-        id: 2,
-        avatar: "white-bear",
-        text: "At vero eos et accusamus et iusto odio dignissimos ducimus qui",
-      },
-      {
-        id: 3,
-        avatar: "blue-blob",
-        text: "Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him",
-      },
-      {
-        id: 4,
-        avatar: "white-bear",
-        text: "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms",
-      },
-      {
-        id: 5,
-        avatar: "blue-blob",
-        text: "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo",
-      },
-    ],
-    images: [
-      {
-        id: 1,
-        src: "/placeholder.svg?height=400&width=800",
-        alt: "Galaxy with black hole",
-      },
-      {
-        id: 2,
-        src: "/placeholder.svg?height=400&width=800",
-        alt: "Space station and rocket launch",
-      },
-    ],
-  }
+  const [video, setVideo] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchVideo = async () => {
+      try {
+        const res = await fetch(API_URLS.VIDEO_DETAIL(params.id));
+        if (!res.ok) throw new Error("Failed to fetch video detail");
+        const data = await res.json();
+        setVideo(data);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchVideo();
+  }, [params.id]);
+
+  if (loading) return <p>Loading...</p>;
+  if (!video) return <p>Video not found</p>;
 
   return (
     <div className={styles.page}>
-      <Header activePage='' />
+      <Header activePage="" />
 
       <main className={styles.main}>
         <div className={styles.container}>
+          {/* Video */}
           <div className={styles.videoContainer}>
             <div className={styles.videoWrapper}>
-              <img
-                src={videoData.thumbnail || "/placeholder.svg"}
-                alt={videoData.title}
-                className={styles.videoThumbnail}
+              <iframe
+                src={video.videoUrl}
+                title={video.title}
+                className={styles.videoIframe}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
               />
-              <button className={styles.playButton}>
-                <FaPlay size={32} />
-              </button>
             </div>
           </div>
 
+          {/* Info */}
           <div className={styles.videoInfo}>
-            <h1 className={styles.videoTitle}>{videoData.title}</h1>
+            <h1 className={styles.videoTitle}>{video.title}</h1>
 
+            {/* Tags */}
             <div className={styles.tags}>
-              {videoData.tags.map((tag, index) => (
-                <span key={index} className={styles.tag}>
-                  {tag === "science" ? (
-                    <svg viewBox="0 0 24 24" className={styles.tagIcon}>
-                      <path d="M9 22l-10-10L9 2l10 10L9 22z" fill="none" stroke="currentColor" strokeWidth="2" />
-                    </svg>
-                  ) : (
-                    <svg viewBox="0 0 24 24" className={styles.tagIcon}>
-                      <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="2" />
-                      <path d="M12 2a15 15 0 0 1 0 20" fill="none" stroke="currentColor" strokeWidth="2" />
-                      <path d="M2 12h20" fill="none" stroke="currentColor" strokeWidth="2" />
-                    </svg>
-                  )}
-                  {tag}
+              {video.tags.map((tag: any) => (
+                <span key={tag.id} className={styles.tag}>
+                  {tag.name}
                 </span>
               ))}
             </div>
 
+            {/* QA Section */}
+
             <div className={styles.commentsList}>
-              {videoData.comments.map((comment, index) => (
-                <div key={comment.id} className={styles.commentItem}>
-                  <div className={styles.commentAvatar}>
-                    {comment.avatar === "blue-blob" ? (
-                      <Image src="/images/hippo-character.svg" width={125} height={120} alt='' />
-                    ) : (
-                      <Image src="/images/rabbit-character.svg" width={125} height={120} alt='' />
-                    )}
+              {video.qaContent.map((qa: any, index: number) => (
+                <>
+                  <div key={qa.id} className={styles.commentItem}>
+                    {/* <div className={styles.commentAvatar}> */}
+
+                    <Image src="/images/hippo-character.svg" width={125} height={120} alt='' />
+                    <h4 className={styles.commentContent}>{qa.question}</h4>
+                    {/* </div> */}
+                  </div>
+
+                  <div key={qa.id} className={styles.commentItem}>
+                    {/* <div className={styles.commentAvatar}> */}
+                    <Image src="/images/rabbit-character.svg" width={125} height={120} alt='' />
+                    <p className={styles.commentContent}>{qa.answer}</p>
+                    {/* </div> */}
 
                   </div>
-                  <div className={styles.commentContent}>
-                    <p>{comment.text}</p>
-                  </div>
-                </div>
+                </>
               ))}
             </div>
 
-            <div className={styles.imageContainer}>
-              <img
-                src={videoData.images[0].src || "/placeholder.svg"}
-                alt={videoData.images[0].alt}
-                className={styles.contentImage}
-              />
-              <button className={styles.imageExpandButton}>
-                <svg viewBox="0 0 24 24" className={styles.expandIcon}>
-                  <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" fill="none" stroke="#4f46e5" strokeWidth="2" />
-                </svg>
-              </button>
-            </div>
 
-            {/* Continue with more comments */}
-            <div className={styles.commentsList}>
-              {videoData.comments.slice(3, 5).map((comment, index) => (
-                <div key={`second-${comment.id}`} className={styles.commentItem}>
-                  <div className={styles.commentAvatar}>
-                    {comment.avatar === "blue-blob" ? (
-                      <Image src="/images/hippo-character.svg" width={125} height={120} alt='' />
-                    ) : (
-                      <Image src="/images/rabbit-character.svg" width={125} height={120} alt='' />
-                    )}
-                  </div>
-                  <div className={styles.commentContent}>
-                    <p>{comment.text}</p>
-                  </div>
+            {/* Related Videos */}
+            {video.relatedVideos && video.relatedVideos.length > 0 && (
+              <div className={styles.relatedSection}>
+                <h2 className={styles.sectionHeading}>Related Videos</h2>
+                <div className={styles.relatedGrid}>
+                  {video.relatedVideos.map((v: any) => (
+
+                    <VideoCard
+                      slug={v.slug}
+                      key={v.id}
+                      id={v.id}
+                      title={v.title}
+                      description={v.category.name}
+                      thumbnail={v.thumbnail}
+                      tags={v.tags.map((t: any) => t.name)}
+                      likes={v.likeCount}
+                      initialLiked={false}
+                    />
+
+                  ))}
                 </div>
-              ))}
-            </div>
-
-            {/* Second image */}
-            <div className={styles.imageContainer}>
-              <img
-                src={videoData.images[1].src || "/placeholder.svg"}
-                alt={videoData.images[1].alt}
-                className={styles.contentImage}
-              />
-              <button className={styles.imageExpandButton}>
-                <svg viewBox="0 0 24 24" className={styles.expandIcon}>
-                  <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" fill="none" stroke="#4f46e5" strokeWidth="2" />
-                </svg>
-              </button>
-            </div>
+              </div>
+            )}
           </div>
         </div>
       </main>
     </div>
-  )
+  );
 }

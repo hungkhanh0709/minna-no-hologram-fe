@@ -1,5 +1,9 @@
+@import './styles/abstracts/variables';
+@import './styles/abstracts/mixins';
+
+
 .heroContainer {
-  background: linear-gradient(0deg, #E8F6FF 0%, #FFF 100%);  
+  background: linear-gradient(0deg, #E8F6FF 0%, #FFF 100%);
   padding-bottom: 100px;
 }
 
@@ -376,10 +380,23 @@
   color: var(--text-color);
 }
 
+
 .relatedVideosGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+  gap: $spacing-8;
+  margin-bottom: $spacing-12;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+    gap: $spacing-6;
+    margin-bottom: $spacing-8;
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $spacing-4;
+  }
 }
 
 .relatedVideoCard {
