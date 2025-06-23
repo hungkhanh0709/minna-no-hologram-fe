@@ -1,53 +1,41 @@
-"use client"
+'use client'
 
+import { useEffect, useState } from "react"
 import { Header } from "@/components/Header"
-import styles from "./science.module.scss"
-import { VideoCard } from "@/components/VideoCard"
 import { Footer } from "@/components/Footer"
+import { VideoCard } from "@/components/VideoCard"
+import styles from "./science.module.scss"
+import { API_URLS } from "@/lib/api"
+import Loading from "@/components/Loading"
+
+type VideoItem = {
+  id: string
+  slug: string
+  title: string
+  thumbnail: string
+  tags: { id: string; name: string }[]
+  likeCount: number
+}
 
 export default function SciencePage() {
-  const videos = [
-    {
-      id: "1",
-      title: "Quantum Physics: The Mysteries of the Universe",
-      thumbnail: "/placeholder.svg?height=240&width=400",
-      description: "Exploring the fascinating world of quantum mechanics and its implications.",
-      tags: ["science", "universe"],
-      likes: 287,
-      isLiked: true,
-      slug: ''
-    },
-    {
-      id: "2",
-      title: "The Science Behind Black Holes",
-      thumbnail: "/placeholder.svg?height=240&width=400",
-      description: "Understanding the physics of these cosmic phenomena.",
-      tags: ["science", "universe"],
-      likes: 156,
-      isLiked: false,
-      slug: ''
-    },
-    {
-      id: "3",
-      title: "DNA and Genetic Engineering",
-      thumbnail: "/placeholder.svg?height=240&width=400",
-      description: "How scientists are revolutionizing medicine through genetics.",
-      tags: ["science", "biology"],
-      likes: 203,
-      isLiked: true,
-      slug: ''
-    },
-    {
-      id: "4",
-      title: "Climate Change: The Science Behind Global Warming",
-      thumbnail: "/placeholder.svg?height=240&width=400",
-      description: "Understanding the scientific evidence for climate change.",
-      tags: ["science", "environment"],
-      likes: 89,
-      isLiked: false,
-      slug: ''
-    },
-  ]
+  const [videos, setVideos] = useState<VideoItem[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchScienceVideos = async () => {
+      try {
+        const res = await fetch(`${API_URLS.VIDEO_SEARCH}?categoryId=culture`)
+        const data = await res.json()
+        setVideos(data.results || [])
+      } catch (err) {
+        console.error("Failed to fetch science videos", err)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchScienceVideos()
+  }, [])
 
   return (
     <div className={styles.page}>
@@ -57,21 +45,25 @@ export default function SciencePage() {
         <div className={styles.container}>
           <h1 className={styles.pageTitle}>Science videos</h1>
 
-          <div className={styles.videoGrid}>
-            {videos.map((video) => (
-              <VideoCard
-                slug={video.slug}
-                key={video.id}
-                id={video.id}
-                title={video.title}
-                description={video.description}
-                thumbnail={video.thumbnail}
-                tags={video.tags}
-                likes={video.likes}
-                initialLiked={video.isLiked}
-              />
-            ))}
-          </div>
+          {loading ? (
+            <Loading />
+          ) : (
+            <div className={styles.videoGrid}>
+              {videos.map((video) => (
+                <VideoCard
+                  key={video.id}
+                  id={video.id}
+                  slug={video.slug}
+                  title={video.title}
+                  description=""
+                  thumbnail={video.thumbnail}
+                  tags={video.tags.map(tag => tag.name)}
+                  likes={video.likeCount}
+                  initialLiked={false}
+                />
+              ))}
+            </div>
+          )}
 
           <div className={styles.viewMoreContainer}>
             <button className={styles.viewMoreButton}>

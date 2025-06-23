@@ -8,6 +8,7 @@ import { VideoCard } from "@/components/VideoCard"
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
 import { API_URLS } from "@/lib/api"
+import Loading from "@/components/Loading"
 
 export default function SearchPage() {
   return (
@@ -67,7 +68,7 @@ function SearchResults() {
 
       {query ? (
         loading ? (
-          <p>Loading results...</p>
+          <Loading />
         ) : videos.length > 0 ? (
           <motion.div
             className={styles.videoGrid}

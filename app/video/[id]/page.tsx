@@ -6,6 +6,7 @@ import { API_URLS } from "@/lib/api";
 import { Header } from "@/components/Header";
 import { VideoCard } from "@/components/VideoCard";
 import Image from "next/image";
+import Loading from "@/components/Loading";
 
 export default function VideoDetailPage({ params }: { params: { id: string } }) {
   const [video, setVideo] = useState<any>(null);
@@ -28,7 +29,7 @@ export default function VideoDetailPage({ params }: { params: { id: string } }) 
     fetchVideo();
   }, [params.id]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />;
   if (!video) return <p>Video not found</p>;
 
   return (
