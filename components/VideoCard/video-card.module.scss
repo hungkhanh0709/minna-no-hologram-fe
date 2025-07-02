@@ -53,8 +53,10 @@
   margin-bottom: $spacing-3;
 
   @include mobile {
-    @include flex(column, flex-start, flex-start);
-    gap: $spacing-2;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: nowrap;
   }
 }
 
@@ -91,7 +93,7 @@
   padding: $spacing-1 $spacing-2;
   border-radius: $radius-md;
   color: $text-muted;
-  font-size: $text-sm;
+  font-size: 12px;
   font-weight: $font-medium;
   transition: $transition-default;
   position: relative;
@@ -120,8 +122,8 @@
 }
 
 .likeIcon {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   transition: all 0.2s ease;
 
   &.filled {
@@ -144,10 +146,15 @@
 }
 
 .title {
-  font-size: $text-xl;
+  font-size: $text-lg;
   font-weight: $font-bold;
   margin-bottom: $spacing-2;
   color: $text-dark;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   @include dark-mode {
     color: $text-light;

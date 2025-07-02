@@ -1,3 +1,6 @@
+@import './styles/abstracts/variables';
+@import './styles/abstracts/mixins';
+
 .main {
   flex: 1;
   padding: 0;
@@ -62,8 +65,7 @@
 
 /* Video info */
 .videoInfo {
-  padding: 2rem;
-  margin-bottom: 2rem;
+  padding: 0rem 6rem 4rem 6rem
 }
 
 .videoTitle {
@@ -100,22 +102,35 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
 
 .commentItem {
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
   padding: 1.5rem;
   background-color: white;
   border-radius: 1rem;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   border: 1px solid #e5e7eb;
+  align-items: flex-start;
 
   background-image: url('/images/stars-bg.svg');
   background-position: center;
   background-size: contain;
-  background-repeat: no-repeat
+
+  background-repeat: no-repeat;
+
+  @include mobile {
+    padding: 1rem;
+  }
+
+  img {
+    @include mobile {
+      width: 50px;
+      height: auto;
+    }
+  }
 }
 
 
@@ -257,7 +272,6 @@
   width: 100%;
   aspect-ratio: 16 / 9;
   border: none;
-  border-radius: 12px;
 }
 
 .relatedGrid {

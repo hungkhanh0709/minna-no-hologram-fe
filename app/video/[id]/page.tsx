@@ -7,6 +7,7 @@ import { Header } from "@/components/Header";
 import { VideoCard } from "@/components/VideoCard";
 import Image from "next/image";
 import Loading from "@/components/Loading";
+import { Footer } from "@/components/Footer";
 
 export default function VideoDetailPage({ params }: { params: { id: string } }) {
   const [video, setVideo] = useState<any>(null);
@@ -115,6 +116,7 @@ export default function VideoDetailPage({ params }: { params: { id: string } }) 
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

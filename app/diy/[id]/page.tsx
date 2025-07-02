@@ -1,14 +1,23 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useParams } from 'next/navigation'
 import { motion, Variants } from 'framer-motion'
-import { FaArrowUpRightDots, FaClock, FaPlay, FaWrench } from 'react-icons/fa6'
+import { FaArrowUpRightDots, FaClock, FaWrench } from 'react-icons/fa6'
 import styles from './diy.module.scss'
 import { Header } from '@/components/Header'
 import Image from 'next/image'
 import { API_URLS } from '@/lib/api'
-import Loading from "@/components/Loading"
+import Loading from '@/components/Loading'
+import { VideoCard } from "@/components/VideoCard"
+import { Footer } from "@/components/Footer"
+
+// const fadeIn = {
+//   hidden: { opacity: 0 },
+//   visible: (i = 0) => ({
+//     opacity: 1,
+//     transition: { delay: i * 0.1, duration: 0.3, ease: 'easeOut' },
+//   }),
+// }
 
 export const fadeUp = (delay = 0.2): Variants => ({
   hidden: { opacity: 0, y: 40 },
@@ -23,16 +32,26 @@ export const fadeUp = (delay = 0.2): Variants => ({
   },
 })
 
+
+export const fadeIn = (): Variants => ({
+  hidden: { opacity: 0 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    transition: { delay: i * 0.1, duration: 0.3, ease: 'easeOut' },
+  }),
+})
+
 export default function DIYPage({ params }: { params: { id: string } }) {
   const [diy, setDiy] = useState<any>(null)
   const [loading, setLoading] = useState(true)
+
+  console.log('diyyy', diy)
 
   useEffect(() => {
     const fetchDiy = async () => {
       try {
         const res = await fetch(API_URLS.DIY_DETAIL(params.id))
         const data = await res.json()
-        console.log('data', data)
         setDiy(data)
       } catch (err) {
         console.error(err)
@@ -50,62 +69,41 @@ export default function DIYPage({ params }: { params: { id: string } }) {
     <div className={styles.page}>
       <Header activePage="diy" className={styles.header} />
       <main className={styles.main}>
-        <motion.section className={styles.heroContainer} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={fadeUp(0)}>
+        <section className={styles.heroContainer}>
           <div className={styles.hero}>
-            <motion.div className={styles.heroContent} variants={fadeUp(0.1)}>
+            <motion.div className={styles.heroContent} variants={fadeIn()} initial="hidden" whileInView="visible">
               <h1 className={styles.heroTitle}>{diy.title}</h1>
               <p className={styles.heroSubtitle}>{diy.summary}</p>
               <div className={styles.projectMetrics}>
-                <div className={styles.metric}>
-                  <div className={styles.metricIcon}><FaClock size={20} /></div>
-                  <div className={styles.metricContent}>
-                    <span className={styles.metricLabel}>TIME</span>
-                    <span className={styles.metricValue}>{diy.estimatedTime}</span>
-                  </div>
-                </div>
-                <div className={styles.metric}>
-                  <div className={styles.metricIcon}><FaWrench size={20} /></div>
-                  <div className={styles.metricContent}>
-                    <span className={styles.metricLabel}>STEPS</span>
-                    <span className={styles.metricValue}>{diy.stepCount}</span>
-                  </div>
-                </div>
-                <div className={styles.metric}>
-                  <div className={styles.metricIcon}><FaArrowUpRightDots size={20} /></div>
-                  <div className={styles.metricContent}>
-                    <span className={styles.metricLabel}>LEVEL</span>
-                    <span className={styles.metricValue}>{diy.difficulty}</span>
-                  </div>
-                </div>
+                <div className={styles.metric}><FaClock size={20} /><span>{diy.estimatedTime}</span></div>
+                <div className={styles.metric}><FaWrench size={20} /><span>{diy.stepCount} steps</span></div>
+                <div className={styles.metric}><FaArrowUpRightDots size={20} /><span>{diy.difficulty}</span></div>
               </div>
             </motion.div>
 
-            <motion.div className={styles.heroImageContainer} variants={fadeUp(0.2)}>
+            <motion.div className={styles.heroImageContainer} variants={fadeIn()} initial="hidden" whileInView="visible">
               <div className={styles.finishedProductLabel}>
-                <div className={styles.labelIcon}>
-                  <Image width={65} height={65} alt='' src='/images/finish-product-icon.svg' />
-                </div>
+                <Image width={40} height={40} alt='' src='/images/finish-product-icon.svg' />
                 <span>The Finished Product</span>
               </div>
               <div className={styles.videoContainer}>
-                <iframe
-                  src={diy.videoUrl}
-                  title={diy.title}
-                  className={styles.tutorialVideo}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
+                <iframe src={diy.videoUrl} title={diy.title} className={styles.tutorialVideo} allowFullScreen />
+              </div>
+              <div className={styles.finishedProductLabelBottom}>
+                <p>From Zero to</p>
+                <strong>120K+ Users Liked</strong>
+                <Image width={40} height={40} alt='' src='/images/finish-product-icon-bottom.svg' />
               </div>
             </motion.div>
           </div>
-        </motion.section>
+        </section>
 
         {/* Creative Time */}
         <motion.section
           className={styles.creativeTimeSection}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.4 }}
+          viewport={{ once: true, amount: 1 }}
           variants={fadeUp(0.2)}
         >
           <div className={styles.creativeTimeImage}>
@@ -119,19 +117,11 @@ export default function DIYPage({ params }: { params: { id: string } }) {
           </div>
         </motion.section>
 
-        {/* Materials */}
-        <motion.section className={styles.whatYouNeedSection} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={fadeUp(0.2)}>
-          <motion.div className={styles.sectionHeader} variants={fadeUp(0.3)}>
-            <h2 className={styles.sectionTitle}>What you need</h2>
-          </motion.div>
-
+        <section className={styles.whatYouNeedSection}>
+          <motion.h2 className={styles.sectionTitle} variants={fadeIn()} initial="hidden" whileInView="visible">What you need</motion.h2>
           <div className={styles.materialsContainer}>
-            <motion.div className={styles.materialsImage} variants={fadeUp(0.4)}>
-              <img src="/placeholder.svg?height=300&width=400" alt="DIY Materials" className={styles.materialsImg} />
-            </motion.div>
-
-
-            <motion.div className={styles.materialsList} variants={fadeUp(0.5)}>
+            <Image width={500} height={500} src='/images/material.svg' alt='' className={styles.materialsImg} />
+            <motion.div className={styles.materialsList} variants={fadeIn()} initial="hidden" whileInView="visible">
               {diy.materials.map((material: any, i: number) => (
                 <div key={i} className={styles.materialItem}>
                   <div className={styles.materialNumber}>{i + 1}</div>
@@ -140,54 +130,49 @@ export default function DIYPage({ params }: { params: { id: string } }) {
               ))}
             </motion.div>
           </div>
-        </motion.section>
+        </section>
 
-        {/* Steps */}
-        <motion.section className={styles.stepByStepSection} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={fadeUp(0.2)}>
-          <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>Step-by-step</h2>
+        <section className={styles.stepByStepSection}>
+          <motion.h2 className={styles.sectionTitle} viewport={{ once: true }} variants={fadeIn()} initial="hidden" whileInView="visible">Step-by-step</motion.h2>
+          <div className={styles.stepsList}>
+            {diy.steps.map((step: any, i: number) => (
+              <motion.div key={i} className={styles.stepItem} custom={i} viewport={{ once: true }} variants={fadeIn()} initial="hidden" whileInView="visible">
+                <img src={step.imageUrl} alt={step.caption} className={styles.stepImg} />
+                <div className={styles.stepContent}>
+                  <div className={styles.stepBadge}>{`STEP ${step.stepNumber}`}</div>
+                  <h3>{step.title}</h3>
+                  <p>{step.description}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
+        </section>
 
-          <motion.div className={styles.stepsContainer} variants={fadeUp(0.3)}>
-            <div className={styles.stepsList}>
-              {diy.steps.map((step: any, i: number) => (
-                <motion.div key={i} className={styles.stepItem} variants={fadeUp(0.3 + i * 0.1)}>
-                  <div className={styles.stepImage}>
-                    <img src={step.imageUrl} alt={step.caption} className={styles.stepImg} />
-                  </div>
-                  <div className={styles.stepContent}>
-                    <div className={styles.stepBadge}>{`STEP ${step.stepNumber}`}</div>
-                    <h3 className={styles.stepTitle}>{step.title}</h3>
-                    <p className={styles.stepDescription}>{step.description}</p>
-                  </div>
-                </motion.div>
+
+        {diy?.relatedDIY && diy?.relatedDIY.length > 0 && (
+          <section className={styles.relatedSection}>
+            <h2 className={styles.sectionHeading}>Related DIY Projects</h2>
+            <div className={styles.relatedGrid}>
+              {diy.relatedDIY.map((v: any) => (
+
+                <VideoCard
+                  slug={v.slug}
+                  key={v.id}
+                  id={v.id}
+                  title={v.title}
+                  description={``}
+                  thumbnail={v.thumbnail}
+                  tags={v.tags.map((t: any) => t.name)}
+                  likes={v.likeCount}
+                  initialLiked={false}
+                />
+
               ))}
             </div>
-          </motion.div>
-        </motion.section>
-
-        {/* Related DIY */}
-        {diy.relatedDIY?.length > 0 && (
-          <motion.section className={styles.relatedVideosSection} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={fadeUp(0.2)}>
-            <motion.div className={styles.container} variants={fadeUp(0.3)}>
-              <h2 className={styles.relatedVideosTitle}>Related DIY Projects</h2>
-              <div className={styles.relatedVideosGrid}>
-                {diy.relatedDIY.map((related: any, i: number) => (
-                  <motion.div key={related.id} className={styles.relatedVideoCard} variants={fadeUp(0.3 + i * 0.1)}>
-                    <div className={styles.relatedVideoImage}>
-                      <img src={related.thumbnail} alt={related.title} className={styles.relatedVideoImg} />
-                    </div>
-                    <div className={styles.relatedVideoContent}>
-                      <h3 className={styles.relatedVideoTitle}>{related.title}</h3>
-                      <p className={styles.relatedVideoDescription}>{related.summary}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </motion.section>
+          </section>
         )}
       </main>
+      <Footer />
     </div>
   )
 }

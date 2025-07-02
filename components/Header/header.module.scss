@@ -204,7 +204,8 @@
 
 .mobileNavigation {
   @include flex(row, center, center);
-  gap: inherit;
+  // gap: inherit;
+  justify-content: space-around;
   flex-wrap: nowrap;
 }
 

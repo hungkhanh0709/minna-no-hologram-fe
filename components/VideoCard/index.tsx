@@ -5,6 +5,8 @@ import { useState } from "react"
 import Link from "next/link"
 import styles from "./video-card.module.scss"
 import { FaHeart } from "react-icons/fa6"
+import { usePathname } from "next/navigation"
+
 
 export interface VideoCardProps {
   id: string
@@ -38,9 +40,12 @@ export function VideoCard({
     setIsLiked(!isLiked)
     setLikes((prev) => (isLiked ? prev - 1 : prev + 1))
   }
+  const pathname = usePathname()
+  const basePath = pathname === "/" ? "video" : pathname.split("/")[1] || "video"
+  const href = `/${basePath}/${slug}`
 
   return (
-    <Link href={`/video/${slug}`} className={`${styles.card} ${className}`}>
+    <Link href={href} className={`${styles.card} ${className}`}>
       {/* Thumbnail */}
       <div className={styles.thumbnail}>
         <img src={thumbnail || "/placeholder.svg"} alt={title} />
@@ -51,7 +56,7 @@ export function VideoCard({
         {/* Tags and Like Button */}
         <div className={styles.tagsAndLike}>
           <div className={styles.tags}>
-            {tags.map((tag, index) => (
+            {tags.slice(0, 2).map((tag, index) => (
               <div key={index} className={styles.tag}>
                 <svg
                   className={styles.tagIcon}
@@ -68,6 +73,7 @@ export function VideoCard({
                 <span>{tag}</span>
               </div>
             ))}
+
           </div>
 
           <button
@@ -84,7 +90,7 @@ export function VideoCard({
         <h3 className={styles.title}>{title}</h3>
 
         {/* Description */}
-        <p className={styles.description}>{description}</p>
+        {/* <p className={styles.description}>{description}</p> */}
       </div>
     </Link>
   )

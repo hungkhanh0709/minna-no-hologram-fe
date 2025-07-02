@@ -148,7 +148,7 @@
 .sectionTitle {
   font-size: $text-3xl;
   font-weight: $font-bold;
-  margin-bottom: $spacing-8;
+  margin-bottom: $spacing-4;
   color: $text-dark;
 
   @include dark-mode {
@@ -249,6 +249,11 @@
       @include flex(column, flex-start, stretch);
       gap: 2rem;
     }
+
+    @include mobile {
+      @include flex(column, flex-start, stretch);
+      gap: 1rem;
+    }
   }
 }
 
@@ -303,6 +308,11 @@
   line-height: 1.6;
   color: $text-muted;
   margin-bottom: $spacing-8;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   @include dark-mode {
     color: $text-muted-light;
@@ -315,8 +325,9 @@
   margin-bottom: $spacing-8;
 
   @include mobile {
-    @include flex(column, flex-start, flex-start);
-    gap: 1rem;
+    @include flex(row, space-between, flex-start);
+    margin-bottom: $spacing-4;
+
   }
 }
 
