@@ -74,10 +74,28 @@ export default function DIYPage({ params }: { params: { id: string } }) {
             <motion.div className={styles.heroContent} variants={fadeIn()} initial="hidden" whileInView="visible">
               <h1 className={styles.heroTitle}>{diy.title}</h1>
               <p className={styles.heroSubtitle}>{diy.summary}</p>
-              <div className={styles.projectMetrics}>
-                <div className={styles.metric}><FaClock size={20} /><span>{diy.estimatedTime}</span></div>
-                <div className={styles.metric}><FaWrench size={20} /><span>{diy.stepCount} steps</span></div>
-                <div className={styles.metric}><FaArrowUpRightDots size={20} /><span>{diy.difficulty}</span></div>
+              <div className={styles.diyMetrics}>
+                <div className={styles.diyMetric}>
+                  <FaClock size={24} />
+                  <div className={styles.diyMetricContent}>
+                    <span className={styles.diyMetricLabel}>EST. TIME</span>
+                    <span className={styles.diyMetricValue}>{diy.estimatedTime}</span>
+                  </div>
+                </div>
+                <div className={styles.diyMetric}>
+                  <FaWrench size={24} />
+                  <div className={styles.diyMetricContent}>
+                    <span className={styles.diyMetricLabel}>STEPS</span>
+                    <span className={styles.diyMetricValue}>{diy.stepCount} steps</span>
+                  </div>
+                </div>
+                <div className={styles.diyMetric}>
+                  <FaArrowUpRightDots size={24} />
+                  <div className={styles.diyMetricContent}>
+                    <span className={styles.diyMetricLabel}>LEVEL</span>
+                    <span className={styles.diyMetricValue}>{String(diy.difficulty[0]).toUpperCase() + String(diy.difficulty).slice(1)}</span>
+                  </div>
+                </div>
               </div>
             </motion.div>
 
@@ -137,7 +155,10 @@ export default function DIYPage({ params }: { params: { id: string } }) {
           <div className={styles.stepsList}>
             {diy.steps.map((step: any, i: number) => (
               <motion.div key={i} className={styles.stepItem} custom={i} viewport={{ once: true }} variants={fadeIn()} initial="hidden" whileInView="visible">
-                <img src={step.imageUrl} alt={step.caption} className={styles.stepImg} />
+                {/* <img src={step.imageUrl} alt={step.caption} className={styles.stepImg} /> */}
+                <Image width="0"
+                  height="0"
+                  sizes="100vw" src={`/images/${i + 1}.png`} alt='' className={styles.stepImg} />
                 <div className={styles.stepContent}>
                   <div className={styles.stepBadge}>{`STEP ${step.stepNumber}`}</div>
                   <h3>{step.title}</h3>
