@@ -24,7 +24,7 @@ export default function SciencePage() {
   useEffect(() => {
     const fetchScienceVideos = async () => {
       try {
-        const res = await fetch(`${API_URLS.VIDEO_SEARCH}?categoryId=culture`)
+        const res = await fetch(`${API_URLS.VIDEO_SEARCH}?categoryId=science`)
         const data = await res.json()
         setVideos(data.results || [])
       } catch (err) {

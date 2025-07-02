@@ -24,7 +24,7 @@ export default function CulturePage() {
   useEffect(() => {
     const fetchCultureVideos = async () => {
       try {
-        const res = await fetch(`${API_URLS.VIDEO_SEARCH}?categoryId=history`)
+        const res = await fetch(`${API_URLS.VIDEO_SEARCH}?categoryId=culture`)
         const data = await res.json()
         setVideos(data.results || [])
       } catch (error) {
