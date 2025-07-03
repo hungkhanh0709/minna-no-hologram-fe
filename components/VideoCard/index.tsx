@@ -41,8 +41,9 @@ export function VideoCard({
     setLikes((prev) => (isLiked ? prev - 1 : prev + 1))
   }
   const pathname = usePathname()
-  const basePath = pathname === "/" ? "video" : pathname.split("/")[1] || "video"
-  const href = `/${basePath}/${slug}`
+  // const basePath = pathname === "/" ? "video" : pathname.split("/")[1] || "video"
+  const basePath = pathname.includes("/diy") ? "/diy" : "/video"
+  const href = `${basePath}/${slug}`
 
   return (
     <Link href={href} className={`${styles.card} ${className}`}>

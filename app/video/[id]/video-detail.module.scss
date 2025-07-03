@@ -275,6 +275,12 @@
 }
 
 .relatedGrid {
-  display: flex;
-  gap: 2rem
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+
+  }
 }

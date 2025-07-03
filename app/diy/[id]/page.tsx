@@ -108,8 +108,10 @@ export default function DIYPage({ params }: { params: { id: string } }) {
                 <iframe src={diy.videoUrl} title={diy.title} className={styles.tutorialVideo} allowFullScreen />
               </div>
               <div className={styles.finishedProductLabelBottom}>
-                <p>From Zero to</p>
-                <strong>120K+ Users Liked</strong>
+                <div>
+                  <p>From Zero to</p>
+                  <strong>122 Users Liked</strong>
+                </div>
                 <Image width={40} height={40} alt='' src='/images/finish-product-icon-bottom.svg' />
               </div>
             </motion.div>
@@ -171,7 +173,7 @@ export default function DIYPage({ params }: { params: { id: string } }) {
 
 
         {diy?.relatedDIY && diy?.relatedDIY.length > 0 && (
-          <section className={styles.relatedSection}>
+          <div className={styles.relatedSection}>
             <h2 className={styles.sectionHeading}>Related DIY Projects</h2>
             <div className={styles.relatedGrid}>
               {diy.relatedDIY.map((v: any) => (
@@ -190,7 +192,7 @@ export default function DIYPage({ params }: { params: { id: string } }) {
 
               ))}
             </div>
-          </section>
+          </div>
         )}
       </main>
       <Footer />

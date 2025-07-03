@@ -574,13 +574,19 @@
 }
 
 .relatedGrid {
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 1rem;
   display: grid;
 
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
 }
 
 .relatedSection {
+  max-width: 1200px;
+  margin: 0 auto 4rem;
+
   h2 {
     margin-bottom: 1.5rem;
   }
