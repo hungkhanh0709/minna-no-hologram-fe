@@ -5,10 +5,8 @@ import { Footer } from "@/components/Footer"
 import { API_URLS } from "@/lib/api"
 
 export default async function DIYPage() {
-  const res = await fetch(`${API_URLS.DIY_SEARCH}`)
-
-  // const res = await fetch(`${API_URLS.VIDEO_SEARCH}?categoryId=science`)
-
+  // const res = await fetch(`${API_URLS.DIY_SEARCH}`)
+  const res = await fetch(`https://minna-no-hologram-apis.fly.dev/v1/diy`)
 
   const data = await res.json()
   console.log('data', data)
